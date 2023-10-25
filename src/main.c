@@ -82,7 +82,7 @@ void main(void)
     {
         send_message(can_dev, 0x129);
 
-        k_sleep(K_MSEC(250));
+        k_sleep(K_MSEC(1000));
     }
     #endif
 }

@@ -33,7 +33,7 @@ void send_loprio_message_periodic(const struct device *dev){
     while(1){
         
         can_send(dev, &msg, K_MSEC(100), NULL, NULL);
-        k_timer_start(&t, K_MSEC(1000), K_NO_WAIT);
+        k_timer_start(&t, K_MSEC(delay), K_NO_WAIT);
         k_timer_status_sync(&t);
     }
 }

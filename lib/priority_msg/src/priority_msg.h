@@ -3,5 +3,5 @@
 
 
 
-void send_hiprio_message(const struct device *dev, uint32_t id, uint32_t delay);
-void send_loprio_message(const struct device *dev, uint32_t id, uint32_t delay);
+void send_hiprio_message_cont(const struct device *dev);
+void send_loprio_message_periodic(const struct device *dev, uint32_t delay);

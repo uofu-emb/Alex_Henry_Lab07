@@ -1,4 +1,5 @@
 #include "priority_msg.h"
+#include <can/can_loopback.h>
 
 
 void send_hiprio_message_cont(const struct device *dev){
@@ -17,7 +18,7 @@ void send_hiprio_message_cont(const struct device *dev){
     }
 }
 
-void send_loprio_message_periodic(const struct device *dev){
+void send_loprio_message_periodic(const struct device *dev, uint32_t delay){
 
     struct zcan_frame msg = {
         .id_type = CAN_STANDARD_IDENTIFIER,

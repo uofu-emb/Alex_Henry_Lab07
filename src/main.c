@@ -24,9 +24,13 @@ void main(void)
         }
     
     // Set CAN mode
+    #if defined (ACTIVITY0 ) || defined(ACTIVITY1)
+    can_set_mode(can_dev, CAN_LOOPBACK_MODE);
+    #endif
     
-    can_set_mode(can_dev,CAN_LOOPBACK_MODE);
-
+    #ifdef ACTIVITY2
+    can_set_mode(can_dev, CAN_NORMAL_MODE);
+    #endif
     
     struct zcan_filter filter = {
         .id_type = CAN_STANDARD_IDENTIFIER,

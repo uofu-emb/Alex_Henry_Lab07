@@ -5,6 +5,12 @@
 #include "periodMsg.h"
 #include "receive_callback.h"
 
+typedef struct k_thread k_thread_t;
+
+#define STACKSIZE 2000
+
+K_THREAD_STACK_DEFINE(transmit_stack, STACKSIZE);
+
 void main(void)
 {
     const struct device *can_dev;
@@ -28,7 +34,17 @@ void main(void)
     };
 
     can_attach_isr(can_dev, (can_rx_callback_t) rx_callback, NULL, &filter);
-
-    periodic_message(can_dev);
+    k_thread_t transmit_thread;
+    k_thread_create(&transmit_thread,
+                    &transmit_stack,
+                    STACKSIZE,
+                    (k_thread_entry_t) periodic_message,
+                    can_dev,
+                    NULL,
+                    NULL,
+                    K_COOP_PRIO(7),
+                    0,
+                    K_NO_WAIT);
+    // periodic_message(can_dev);
 }
 

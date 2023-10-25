@@ -23,3 +23,16 @@ void periodic_message(const struct device *dev){
     }
 
 }
+
+void send_message(const struct device *dev, uint32_t id)
+{
+    struct zcan_frame msg = {
+        .id_type = CAN_STANDARD_IDENTIFIER,
+        .rtr = CAN_DATAFRAME,
+        .id = id,
+        .dlc = 8,
+        .data = {1,2,3,4,5,6,7,8}
+    };
+
+    can_send(dev, &msg, K_MSEC(100), NULL, NULL);
+}

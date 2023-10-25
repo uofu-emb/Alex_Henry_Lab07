@@ -4,6 +4,7 @@
 #include <can/can_loopback.h>
 #include "periodMsg.h"
 #include "receive_callback.h"
+#include "priority_msg.h"
 
 typedef struct k_thread k_thread_t;
 
@@ -72,6 +73,10 @@ void main(void)
     #endif
 
     #ifdef ACTIVITY3
+    while(1){
+        send_hiprio_message();
+    }
 
+    #endif 
 }
 

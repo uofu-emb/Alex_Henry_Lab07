@@ -35,12 +35,18 @@ void main(void)
     struct zcan_filter filter = {
         .id_type = CAN_STANDARD_IDENTIFIER,
         .rtr = CAN_DATAFRAME,
-        .id = 0x123,
+        .id = 0x120,
         .rtr_mask = 1, 
-        .id_mask = CAN_STD_ID_MASK
+        .id_mask = 0x7F0
     };
 
+    struct zcan_work rx_work;
+
+    #ifdef ACTIVITY3
+    can_attach_workq(can_dev, &k_sys_work_q, &rx_work, (can_rx_callback_t) rx_callback, NULL, &filter);
+    #else
     can_attach_isr(can_dev, (can_rx_callback_t) rx_callback, NULL, &filter);
+    #endif
     #ifdef ACTIVITY0
     k_thread_t transmit_thread;
     k_thread_create(&transmit_thread,
@@ -72,6 +78,7 @@ void main(void)
     #endif
 
     #ifdef ACTIVITY3
-
+    
+    #endif
 }
 

@@ -28,7 +28,7 @@ void main(void)
     can_set_mode(can_dev, CAN_LOOPBACK_MODE);
     #endif
     
-    #ifdef ACTIVITY2
+    #if defined (ACTIVITY2) || defined (ACTIVITY3)
     can_set_mode(can_dev, CAN_NORMAL_MODE);
     #endif
     
@@ -70,6 +70,8 @@ void main(void)
         k_sleep(K_MSEC(250));
     }
     #endif
+
+    #ifdef ACTIVITY3
 
 }
 

@@ -78,7 +78,12 @@ void main(void)
     #endif
 
     #ifdef ACTIVITY3
-    
+    while (1)
+    {
+        send_message(can_dev, 0x129);
+
+        k_sleep(K_MSEC(250));
+    }
     #endif
 }
 

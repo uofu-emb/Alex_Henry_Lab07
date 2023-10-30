@@ -74,8 +74,8 @@ void main(void)
 
     #ifdef ACTIVITY3
     while(1){
-        send_hiprio_message_cont(can_dev);
-        //send_loprio_message_periodic(can_dev, 1000);
+        // send_hiprio_message_cont(can_dev);
+        send_loprio_message_periodic(can_dev, 1000);
     }
 
     #endif 

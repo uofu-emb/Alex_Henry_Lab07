@@ -1,4 +1,7 @@
 #include "bmsDatagen.h"
+#include <zephyr.h>
+#include <device.h>
+#include <can/can_loopback.h>
 
 void periodic_message_bms(const struct device *dev)
 {
